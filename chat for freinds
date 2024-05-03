@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiplayer Chat</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .chat-box {
+        width: 400px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .messages {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+    .message {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .message:last-child {
+        border-bottom: none;
+    }
+
+    .message .user {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .message .text {
+        margin-left: 10px;
+    }
+
+    .input-box {
+        display: flex;
+        background: #f9f9f9;
+    }
+
+    .input-box input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 0;
+    }
+
+    .input-box button {
+        padding: 10px 20px;
+        border: none;
+        background: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="chat-box">
+    <div class="messages" id="messages">
+        <!-- Messages will be displayed here -->
+    </div>
+    <div class="input-box">
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    // Dummy users
+    const users = ["User1", "User2", "User3", "User4"];
+
+    // Function to generate a random user
+    function getRandomUser() {
+        return users[Math.floor(Math.random() * users.length)];
+    }
+
+    // Function to create and append a new message
+    function appendMessage(user, text) {
+        const messages = document.getElementById("messages");
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "message";
+        messageDiv.innerHTML = `<span class="user">${user}:
